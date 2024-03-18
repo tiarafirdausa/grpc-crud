@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package employee;
+
+option java_multiple_files = true;
+
+message CreateEmployeeRequest {
+  string name = 1;
+  int32 age = 2;
+  string department = 3;
+}
+
+message CreateEmployeeResponse {
+  int32 id = 1;
+  string name = 2;
+  int32 age = 3;
+  string department = 4;
+  string message = 5;
+}
+
+message Employee {
+  int32 id = 1;
+  string name = 2;
+  int32 age = 3;
+  string department = 4;
+}
+
+message GetAllEmployeesRequest {
+}
+
+message GetAllEmployeesResponse {
+  repeated Employee employees = 1;
+}
+
+message DeleteEmployeeRequest {
+  int32 id = 1;
+}
+
+message DeleteEmployeeResponse {
+  string message = 1;
+}
+
+message UpdateEmployeeRequest {
+  int32 id = 1;
+  string name = 2;
+  int32 age = 3;
+  string department = 4;
+}
+
+message UpdateEmployeeResponse {
+  string message = 1;
+}
+
+service EmployeeService {
+  rpc CreateEmployee(CreateEmployeeRequest) returns (CreateEmployeeResponse);
+  rpc GetAllEmployees(GetAllEmployeesRequest) returns (GetAllEmployeesResponse);
+  rpc DeleteEmployee(DeleteEmployeeRequest) returns (DeleteEmployeeResponse);
+  rpc UpdateEmployee(UpdateEmployeeRequest) returns (UpdateEmployeeResponse);
+}
